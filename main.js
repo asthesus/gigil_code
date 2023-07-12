@@ -12,6 +12,8 @@ const is_sequence = (char) => {
 const cipher = () => {
     let deciphered = deciphered_div.textContent;
     let ciphered = "";
+    let gap = "/";
+    if(gap_char !== 0) gap = gap_char;
     for(place = 0; place <= deciphered.length - 1; place++) {
         const char = deciphered.charAt(place);
         let did_cipher = true;
@@ -42,7 +44,8 @@ const cipher = () => {
         else if(char === "y" || char === "Y") {ciphered = ciphered.concat("_11_2")}
         else if(char === "z" || char === "Z") {ciphered = ciphered.concat("_22")}
         else {did_cipher = false; ciphered = ciphered.concat(char)};
-        if(did_cipher && is_letter(deciphered.charAt(place + 1)) && place !== deciphered.length - 1) ciphered = ciphered.concat("/");
+        
+        if(did_cipher && is_letter(deciphered.charAt(place + 1)) && place !== deciphered.length - 1) ciphered = ciphered.concat(gap);
     }
     ciphered_div.textContent = ciphered;
 }
@@ -51,7 +54,6 @@ const decipher = () => {
     let sequence = "";
     let true_string = "";
     let deciphered = "";
-    let gap_char = 0;
     for(place = 0; place <= ciphered.length - 1; place++) {
         const char = ciphered.charAt(place);
         true_string = true_string.concat(char);
@@ -103,3 +105,4 @@ const decipher = () => {
 }
 deciphered_div.addEventListener("input", () => {cipher()});
 ciphered_div.addEventListener("input", () => {decipher()});
+let gap_char = 0;
