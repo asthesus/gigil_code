@@ -89,15 +89,11 @@ const decipher = () => {
             else {did_add_sequence = false};
             sequence = "";
             if(did_add_sequence) {
-                if(gap_char === 0 && !is_sequence(char)) {
-                    gap_char = char;
-                    console.log(gap_char);
-                }
+                if(gap_char === 0 && !is_sequence(char)) gap_char = char;
                 if(char !== gap_char && !is_sequence(char)) deciphered = deciphered.concat(char);
                 true_string = "";
             }
         }
-        // if(did_add_sequence && char !== gap_char) deciphered.concat(char);
         if(!did_add_sequence) {
             deciphered = deciphered.concat(true_string);
             true_string = "";
@@ -107,4 +103,3 @@ const decipher = () => {
 }
 deciphered_div.addEventListener("input", () => {cipher()});
 ciphered_div.addEventListener("input", () => {decipher()});
-// cipher();
